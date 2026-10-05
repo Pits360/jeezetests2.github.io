@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JezeTes2 - Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        /* Stylizowana ikona na wzór BlueStacks / kolorowych warstw */
+        .app-icon {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 20px auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .layer {
+            width: 80px;
+            height: 15px;
+            border-radius: 4px;
+            margin: -3px 0;
+            transform: skewX(-15deg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .layer-green  { background: #2ecc71; z-index: 4; width: 70px; }
+        .layer-yellow { background: #f1c40f; z-index: 3; width: 75px; }
+        .layer-red    { background: #e74c3c; z-index: 2; width: 80px; }
+        .layer-blue   { background: #3498db; z-index: 1; width: 85px; }
+
+        .v-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #238636;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #161b22;
+            z-index: 5;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+        }
+
+        .filename {
+            font-size: 14px;
+            color: #8b949e;
+            margin-bottom: 25px;
+            background: #0d1117;
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #238636;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.2s, transform 0.1s;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #2ea043;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #8b949e;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Ikona aplikacji -->
+        <div class="app-icon">
+            <div class="v-badge">✓</div>
+            <div class="layer layer-green"></div>
+            <div class="layer layer-yellow"></div>
+            <div class="layer layer-red"></div>
+            <div class="layer layer-blue"></div>
+        </div>
+
+        <h1>jeze test2</h1>
+        <div class="filename">jeze test2.apk</div>
+
+        <!-- Przycisk pobierania -->
+        <a href="jeze test2.apk" download="jeze test2.apk" id="downloadBtn" class="btn">
+            Pobierz plik APK
+        </a>
+
+        <!-- Tekst pomocniczy podmieniany przez JS -->
+        <p id="infoText" class="info-text">Wykrywanie urządzenia...</p>
+    </div>
+
+    <script>
+        // Skrypt wykrywający typ urządzenia (PC / Mobile) i dostosowujący napisy
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.getElementById("downloadBtn");
+            const info = document.getElementById("infoText");
+            
+            // Proste sprawdzenie czy użytkownik korzysta z telefonu/tabletu
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                btn.innerText = "Pobierz APK na Androida";
+                info.innerHTML = "Zezwól na pobieranie w przeglądarce i otwórz plik, aby zainstalować aplikację.";
+            } else {
+                btn.innerText = "Pobierz APK (BlueStacks / PC)";
+                info.innerHTML = "Po pobraniu na komputer, przeciągnij plik bezpośrednio do otwartego okna emulatora <strong>BlueStacks</strong>, aby go uruchomić.";
+            }
+        });
+    </script>
+
+</body>
+</html>
